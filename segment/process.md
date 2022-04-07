@@ -17,12 +17,16 @@ clone飞桨的PaddleSeg项目:
 `python make_data.py`
 
 会自动生成数据文件夹和需要用到的txt文件
+
+**注意事项：**
+百度智能标注只支持实例标注，因此得到的数据集是实例分割数据集。在make_data中需要将同一语义下的不同实例分为一类，进行一个实例分割转语义分割的处理
+
 ### 修改配置
 从PaddleSeg/config下选择要使用的模型。以hardnet为例，打开配置文件hardnet_cityscapes_1024x1024_160k.yml
 
 1.查看基础_base_中使用的yml文件，找到并打开
 
-2.讲train_dataset修改为：
+2.将train_dataset修改为：
 ```
 train_dataset:
   type: Dataset   
@@ -44,7 +48,7 @@ train_dataset:
     - type: Normalize
   mode: train
   ```
-  3.讲val_dataset修改为：
+  3.将val_dataset修改为：
   ```
   val_dataset:
     type: Dataset
