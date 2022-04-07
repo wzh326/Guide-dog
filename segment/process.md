@@ -32,7 +32,7 @@ train_dataset:
   type: Dataset   
   dataset_root: dataset    #存储image和labels的路径
   train_path: dataset/train.txt   #存放tain.txt的路径
-  num_classes: 3           #总类别，背景也算一类
+  num_classes: 4           #总类别，背景也算一类
   transforms:
     - type: ResizeStepScaling
       min_scale_factor: 0.5
@@ -54,7 +54,7 @@ train_dataset:
     type: Dataset
     dataset_root: dataset
     val_path: dataset/val.txt
-    num_classes: 3
+    num_classes: 4
     transforms:
       - type: Normalize
     mode: val
