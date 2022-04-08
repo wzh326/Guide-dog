@@ -69,11 +69,22 @@ train_dataset:
 执行一下命令即可：
 <br>
 `python video_to_img.py`
-### 二.进行预测
-`python predict.py \
+### 二.制作预测目录文件
+```
+%cd PaddleSeg #进到PaddleSeg文件中
+img_list=os.listdir('imgs')
+f=open('test.txt','w',encoding='utf-8')
+for img in img_list:
+    f.write('imgs/'+img+'\n')
+f.close()
+```
+### 三.进行预测
+```
+python predict.py \
        --config configs/quick_start/bisenet_optic_disc_512x512_1k.yml \
        --model_path output/best_model/model.pdparams \    #模型参数路径
        --image_path  test.txt \                           #待预测文件目录
        --save_dir output/result \                         #结果文件存储路径
-       --custom_color 0 0 0 128 0 128 0 255 0 255 255 0   #不同类别自定义颜色，采用RGB颜色空间，顺序与label.txt一致`  
-### 三.分割图片还原为视频
+       --custom_color 0 0 0 128 0 128 0 255 0 255 255 0   #不同类别自定义颜色，采用RGB颜色空间，顺序与label.txt一致
+```
+### 四.分割图片还原为视频
