@@ -81,7 +81,7 @@ f.close()
 ### 三.进行预测
 ```
 python predict.py \
-       --config configs/quick_start/bisenet_optic_disc_512x512_1k.yml \
+       --config configs/hardnet/hardnet_cityscapes_1024x1024_160k.yml \
        --model_path output/best_model/model.pdparams \    #模型参数路径
        --image_path  test.txt \                           #待预测文件目录
        --save_dir output/result \                         #结果文件存储路径
