@@ -5,7 +5,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 import numpy as np
 import cv2
-import tqdm import trange
 
 #需要改的部分
 #-------------------
@@ -28,8 +27,7 @@ for i in coco.loadCats(coco.getCatIds()):
 f.close()
 
 # print("Total images:", len(imgIds))
-for i in trange(len(imgIds)):
-    image_id=i
+for image_id in imgIds:
     #获取图片
     img = coco.imgs[image_id]
     image = np.array(Image.open(os.path.join(img_dir, img['file_name'])))
