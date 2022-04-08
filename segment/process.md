@@ -5,7 +5,7 @@ clone飞桨的PaddleSeg项目:
 `git clone https://github.com/PaddlePaddle/PaddleSeg.git`
 <br>
 克隆完成后放在segment路径下
-### COCO转data
+### 二.COCO转data
 1.下载第三方库
 
 `pip install pycocotools`
@@ -21,7 +21,7 @@ clone飞桨的PaddleSeg项目:
 **注意事项：**
 百度智能标注只支持实例标注，因此得到的数据集是实例分割数据集。在make_data中需要将同一语义下的不同实例分为一类，进行一个实例分割转语义分割的处理
 
-### 修改配置
+### 三.修改配置
 从PaddleSeg/config下选择要使用的模型。以hardnet为例，打开配置文件hardnet_cityscapes_1024x1024_160k.yml
 
 1.查看基础_base_中使用的yml文件，找到并打开
@@ -59,3 +59,21 @@ train_dataset:
       - type: Normalize
     mode: val
   ```
+## 模型预测流程
+### 一.视频转图片
+使用PaddleSeg预测时，如果预测文件是视频，那么需要将视频帧转换为图片，才能进行预测。
+[PaddleSeg官方预测文档](https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.4/docs/predict/predict_cn.md)
+<br>
+我借鉴了大佬的代码，并在此基础上进行了一定的修改。[原代码地址](https://github.com/Irvingao/paddle-inference-deploy-Lib/blob/main/data_tools/videoSpiltSeg.py)
+<br>
+执行一下命令即可：
+<br>
+`python video_to_img.py`
+### 二.进行预测
+`python predict.py \
+       --config configs/quick_start/bisenet_optic_disc_512x512_1k.yml \
+       --model_path output/best_model/model.pdparams \    #模型参数路径
+       --image_path  test.txt \                           #待预测文件目录
+       --save_dir output/result \                         #结果文件存储路径
+       --custom_color 0 0 0 128 0 128 0 255 0 255 255 0   #不同类别自定义颜色，采用RGB颜色空间，顺序与label.txt一致`  
+### 三.分割图片还原为视频
