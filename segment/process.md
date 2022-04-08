@@ -86,7 +86,8 @@ python predict.py \
        --model_path output/best_model/model.pdparams \    #模型参数路径
        --image_path  test.txt \                           #待预测文件目录
        --save_dir output/result \                         #结果文件存储路径
-       --custom_color 0 0 0 128 0 128 0 255 0 255 255 0   #不同类别自定义颜色，采用RGB颜色空间，顺序与label.txt一致
+       --custom_color 0 0 0 128 0 128 255 0 0 255 255 0   #不同类别自定义颜色，采用RGB颜色空间，顺序与label.txt一致
+                                                          #黑(0,0,0) 紫(128,0,128) 红(255,0,0) 黄(255,255,0)
 ```
 ### 四.分割图片还原为视频
 运行脚本将推理出的图片还原为视频
