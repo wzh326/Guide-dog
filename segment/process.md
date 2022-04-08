@@ -78,6 +78,7 @@ for img in img_list:
     f.write('imgs/'+img+'\n')
 f.close()
 ```
+**注意：**执行完该步骤之后，路径一直在PaddleSeg下
 ### 三.进行预测
 ```
 python predict.py \
@@ -88,3 +89,7 @@ python predict.py \
        --custom_color 0 0 0 128 0 128 0 255 0 255 255 0   #不同类别自定义颜色，采用RGB颜色空间，顺序与label.txt一致
 ```
 ### 四.分割图片还原为视频
+运行脚本将推理出的图片还原为视频
+```
+python img_to_video.py
+```
