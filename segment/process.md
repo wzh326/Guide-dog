@@ -59,6 +59,17 @@ train_dataset:
       - type: Normalize
     mode: val
   ```
+### 恢复训练
+PaddleSeg的恢复训练设置的十分简单，只需要更改一个地方即可，其他部分和train的命令一致
+```
+python train.py \
+       --config configs/quick_start/bisenet_optic_disc_512x512_1k.yml \
+       --resume_model output/iter_500 \              #这个地方，添加一个resume_model参数
+       --do_eval \
+       --use_vdl \
+       --save_interval 500 \
+       --save_dir output
+```
 ## 模型预测流程
 ### 一.视频转图片
 使用PaddleSeg预测时，如果预测文件是视频，那么需要将视频帧转换为图片，才能进行预测。
