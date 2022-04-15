@@ -106,3 +106,11 @@ python predict.py \
 ```
 python img_to_video.py
 ```
+## 导出模型
+```
+!export CUDA_VISIBLE_DEVICES=0
+!python export.py \
+       --config configs/hardnet/hardnet_cityscapes_1024x1024_160k.yml \     
+       --model_path output/best_model/model.pdparams \         #模型参数
+       --save_dir output/predict          #保存文件路径
+```      
